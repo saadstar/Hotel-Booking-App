@@ -3,7 +3,7 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { format } from "date-fns";
-import { useHistory, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { newSearch } from '../redux/Actions';
 import { AuthContext } from '../Context/AuthContext';
@@ -49,14 +49,16 @@ export const Header = ({type}) => {
   return (
     <div className="header">
       <div
-        className={type === "hotels" ? "header-container listMode" : "header-container"}
+        className={
+          type === "hotels" ? "header-container listMode" : "header-container"
+        }
       >
         <div className="header-list">
           <div className="header-list-item active">
             <i class="fa-solid fa-bed"></i>
             <span>Stays</span>
           </div>
-          <div className="header-list-item">
+          <div className="header-list-item ">
             <i class="fa-solid fa-plane"></i>
             <span>Flights</span>
           </div>
@@ -64,17 +66,17 @@ export const Header = ({type}) => {
             <i class="fa-solid fa-car"></i>
             <span>Car Rentals</span>
           </div>
-          <div className="header-list-item">
+          <div className="header-list-item nonee">
             <i class="fa-solid fa-bed"></i>
             <span>Attrections</span>
           </div>
-          <div className="header-list-item">
+          <div className="header-list-item nonee">
             <i class="fa-solid fa-taxi"></i>
             <span>Airport Taxis</span>
           </div>
         </div>
         {type !== "hotels" && (
-          <div>
+          <div className="header-bottom">
             <h1 className="header-title">
               A lifetime of discounts? It's Genuis.
             </h1>
@@ -82,8 +84,9 @@ export const Header = ({type}) => {
               Get rewarded for your travels - unlock instant saving of 10% or
               more with a free saad booking account
             </p>
-            {!user &&
-              <button className="header-button">Sign in / Register</button>}
+            {!user && (
+              <button className="header-button">Sign in / Register</button>
+            )}
             {/* // start search */}
             <form className="header-search" onSubmit={formHandler}>
               <div className="header-search-item">
@@ -92,11 +95,15 @@ export const Header = ({type}) => {
                   type="text"
                   placeholder="Where are you going?"
                   className="header-search-input"
-                  onChange={(e)=>setDestination(e.target.value)}
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
               <div className="header-search-item">
-                <i class="fa-solid fa-calendar-days" id="header-icon"></i>
+                <i
+                  class="fa-solid fa-calendar-days"
+                  id="header-icon"
+                  onClick={() => setOpenDate(!openDate)}
+                ></i>
                 <span
                   className="header-search-text"
                   onClick={() => setOpenDate(!openDate)}
@@ -116,7 +123,11 @@ export const Header = ({type}) => {
                 )}
               </div>
               <div className="header-search-item">
-                <i class="fa-solid fa-person" id="header-icon"></i>
+                <i
+                  class="fa-solid fa-person"
+                  id="header-icon"
+                  onClick={() => setOpenOption(!openOption)}
+                ></i>
                 <span
                   className="header-search-text"
                   onClick={() => setOpenOption(!openOption)}
@@ -186,7 +197,9 @@ export const Header = ({type}) => {
                 )}
               </div>
               <div className="header-search-item">
-                <button className="header-button" onClick={btnHandler}>Search</button>
+                <button className="header-button" onClick={btnHandler}>
+                  Search
+                </button>
               </div>
             </form>
           </div>

@@ -50,7 +50,7 @@ export const Booking = ({ setIsModel, hotelId }) => {
           onClick={() => setIsModel(false)}
         ></i>
         <span>Select Your Room:</span>
-        {rooms.map((item) => (
+        { rooms.length>=1? rooms?.map((item) => (
           <div className="rItem">
             <div className="rItemInfo">
               <div className="rTitle">{item.title}</div>
@@ -69,7 +69,7 @@ export const Booking = ({ setIsModel, hotelId }) => {
             </div>
             </div>
           </div>
-        ))}
+        )):<h1>No Rooms are avaiable Now.</h1>}
         <button onClick={btnHandler} className='rButton'>Reserve Now!</button>
       </div>
     </div>

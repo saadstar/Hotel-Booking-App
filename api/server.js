@@ -8,11 +8,11 @@ const userRouter=require("./routes/users");
 const roomsRouter=require("./routes/rooms");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const PORT = 3500 || process.env.PORT;
+const PORT = process.env.PORT || 3500;
 
 app.use(express.json());
 connectDB();
-// app.use(cookieParser());
+
 app.use(cookieParser());
 app.use(cors());
 app.use("/api/hotels",hotelrouter);
